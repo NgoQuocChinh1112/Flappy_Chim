@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1741960802 source:c:\main_nqc\flappy_bird\main.cpp
+	<iostream>
+	"graphic.h"
+	"bird.h"
+	"pipe.h"
+
+1741949511 c:\main_nqc\flappy_bird\graphic.h
+	<SDL.h>
+	<SDL_image.h>
+	<vector>
+
+1741951808 source:c:\main_nqc\flappy_bird\graphic.cpp
+	"graphic.h"
+	<iostream>
+
+1741951728 source:c:\main_nqc\flappy_bird\bird.cpp
+	"bird.h"
+	"graphic.h"
+
+1741952005 source:c:\main_nqc\flappy_bird\pipe.cpp
+	"pipe.h"
+	"graphic.h"
+
+1741935775 source:c:\main_nqc\flappy_bird\background.cpp
+
+1741948326 c:\main_nqc\flappy_bird\bird.h
+	<SDL.h>
+	<SDL_image.h>
+
+1741949436 c:\main_nqc\flappy_bird\hangso.h
+
+1741948326 c:\main_nqc\flappy_bird\pipe.h
+	<SDL.h>
+	<SDL_image.h>
+	<vector>
+	<cstdlib>
+	<ctime>
+
