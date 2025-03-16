@@ -6,7 +6,7 @@
 
 struct Bird{
     int x, y;
-    double vtoc;
+    float vtoc;
 };
 void initBird(Bird &bird);
 void updateBird(Bird &bird);

@@ -5,17 +5,17 @@ using namespace std;
 
 void CreatePipe(vector<Pipe> &pipes, SDL_Renderer* renderer){
     Pipe newPipe ;
-    newPipe.pipe_x = 800;
+    newPipe.pipe_x = 400;
     newPipe.pipe_y = rand() % 200  - 400;
-    newPipe.pipe1 = IMG_LoadTexture(renderer, "pipe.png");
-    newPipe.pipe2 = IMG_LoadTexture(renderer, "pipe.png");
+    newPipe.pipe1 = IMG_LoadTexture(renderer, "pipe_top.png");
+    newPipe.pipe2 = IMG_LoadTexture(renderer, "pipe_bot.png");
     pipes.push_back(newPipe);
 }
 void updatePipes(vector<Pipe> &pipes, int Size){
     for(int i = 0; i < Size;++i){
         pipes[i].pipe_x -=3;
 
-        if(pipes[i].pipe_x < -150){
+        if(pipes[i].pipe_x < -50){
             pipes.erase(pipes.begin() + i);
             i--;
         }
@@ -36,5 +36,9 @@ bool KiemTraVaCham(SDL_Rect &birdRect, vector<Pipe> &pipes){
 
         if(SDL_HasIntersection(&birdRect, &pipeRect1) || SDL_HasIntersection(&birdRect, &pipeRect2)) return true;
     }
+    return false;
+}
+bool KTVaChamMatDat(SDL_Rect &birdRect, SDL_Rect &grRect1, SDL_Rect &grRect2){
+    if(SDL_HasIntersection(&birdRect, &grRect1) || SDL_HasIntersection(&birdRect, &grRect2)) return true;
     return false;
 }

@@ -37,6 +37,8 @@
 		<Unit filename="graphic.cpp" />
 		<Unit filename="graphic.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="phong_chu.cpp" />
+		<Unit filename="phong_chu.h" />
 		<Unit filename="pipe.cpp" />
 		<Unit filename="pipe.h" />
 		<Extensions>

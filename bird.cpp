@@ -9,7 +9,7 @@ void initBird(Bird &bird){
     bird.vtoc = 0;
 }
 void updateBird(Bird &bird){
-    bird.vtoc += 0.3;
+    bird.vtoc += 0.39f;
     bird.y +=bird.vtoc;
 }
 void renderBird(SDL_Renderer* renderer, SDL_Texture* birdTexture, Bird &bird, float &Count){

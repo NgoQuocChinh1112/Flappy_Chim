@@ -1,14 +1,14 @@
 #include "graphic.h"
 #include <iostream>
 
-const int SCREEN_WIDTH = 800;
+const int SCREEN_WIDTH = 400;
 const int SCREEN_HEIGHT = 600;
 const char* WINDOW_TITLE = "Flappy bird";
 
 const int BIRD_WIDTH = 40;
 const int BIRD_HEIGHT = 35;
 
-const int PIPE_WIDTH = 100;
+const int PIPE_WIDTH = 50;
 const int PIPE_HEIGHT = 500;
 
 
