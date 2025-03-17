@@ -6,9 +6,9 @@ using namespace std;
 void CreatePipe(vector<Pipe> &pipes, SDL_Renderer* renderer){
     Pipe newPipe ;
     newPipe.pipe_x = 400;
-    newPipe.pipe_y = rand() % 200  - 400;
-    newPipe.pipe1 = IMG_LoadTexture(renderer, "pipe_top.png");
-    newPipe.pipe2 = IMG_LoadTexture(renderer, "pipe_bot.png");
+    newPipe.pipe_y = rand() % 210  - 430;
+    newPipe.pipe1 = IMG_LoadTexture(renderer, "pipeTop.png");
+    newPipe.pipe2 = IMG_LoadTexture(renderer, "pipeBottom.png");
     pipes.push_back(newPipe);
 }
 void updatePipes(vector<Pipe> &pipes, int Size){
@@ -22,6 +22,7 @@ void updatePipes(vector<Pipe> &pipes, int Size){
     }
 }
 void renderPipes(SDL_Renderer* renderer, vector<Pipe> &pipes){
+
     for(Pipe tmp : pipes){
         SDL_Rect pipeRect1 = {tmp.pipe_x, tmp.pipe_y, PIPE_WIDTH, PIPE_HEIGHT};
         SDL_Rect pipeRect2 = {tmp.pipe_x, tmp.pipe_y+PIPE_HEIGHT + 150, PIPE_WIDTH, PIPE_HEIGHT};

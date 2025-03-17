@@ -11,6 +11,8 @@ const int BIRD_HEIGHT = 35;
 const int PIPE_WIDTH = 50;
 const int PIPE_HEIGHT = 500;
 
+const int COIN_WIDTH = 16;
+const int COIN_HEIGHT = 16;
 
 using namespace std;
 

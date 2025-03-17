@@ -15,6 +15,9 @@ extern const int BIRD_HEIGHT ;
 extern const int PIPE_WIDTH ;
 extern const int PIPE_HEIGHT ;
 
+extern const int COIN_WIDTH ;
+extern const int COIN_HEIGHT ;
+
 void logErrorAndExit(const char* msg, const char* error);
 SDL_Window* initSDL(int SCREEN_WIDTH, int SCREEN_HEIGHT, const char* WINDOW_TITLE);
 SDL_Renderer* createRenderer(SDL_Window* window);

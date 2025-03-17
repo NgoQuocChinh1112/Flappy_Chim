@@ -1,17 +1,13 @@
 # depslib dependency file v1.0
-1742125892 source:c:\main_nqc\flappy_bird\main.cpp
-	<iostream>
-	"graphic.h"
-	"bird.h"
-	"pipe.h"
-	"phong_chu.h"
+1742219714 source:c:\main_nqc\flappy_bird\main.cpp
+	"game.h"
 
-1741949511 c:\main_nqc\flappy_bird\graphic.h
+1742213214 c:\main_nqc\flappy_bird\graphic.h
 	<SDL.h>
 	<SDL_image.h>
 	<vector>
 
-1742028937 source:c:\main_nqc\flappy_bird\graphic.cpp
+1742213213 source:c:\main_nqc\flappy_bird\graphic.cpp
 	"graphic.h"
 	<iostream>
 
@@ -19,7 +15,7 @@
 	"bird.h"
 	"graphic.h"
 
-1742125892 source:c:\main_nqc\flappy_bird\pipe.cpp
+1742213733 source:c:\main_nqc\flappy_bird\pipe.cpp
 	"pipe.h"
 	"graphic.h"
 
@@ -31,7 +27,7 @@
 
 1741949436 c:\main_nqc\flappy_bird\hangso.h
 
-1742125892 c:\main_nqc\flappy_bird\pipe.h
+1742213733 c:\main_nqc\flappy_bird\pipe.h
 	<SDL.h>
 	<SDL_image.h>
 	<vector>
@@ -46,4 +42,15 @@
 1742135288 c:\main_nqc\flappy_bird\phong_chu.h
 	<SDL.h>
 	<SDL_ttf.h>
+
+1742219714 source:c:\main_nqc\flappy_bird\game.cpp
+	"game.h"
+
+1742219714 c:\main_nqc\flappy_bird\game.h
+	<iostream>
+	<vector>
+	"graphic.h"
+	"bird.h"
+	"pipe.h"
+	"phong_chu.h"
 
