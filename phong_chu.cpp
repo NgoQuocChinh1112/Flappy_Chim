@@ -22,6 +22,9 @@ bool initScore(SDL_Renderer* renderer) {
 void increaseScore(){
     score ++;
 }
+void resetScore(){
+    score = 0;
+}
 void renderScore(SDL_Renderer* renderer){
     SDL_Color white = {255, 255, 255};
     string scoreText = to_string(score);

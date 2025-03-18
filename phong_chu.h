@@ -8,6 +8,7 @@ extern int score;
 
 bool initScore(SDL_Renderer* renderer);
 void increaseScore();
+void resetScore();
 void renderScore(SDL_Renderer* renderer);
 void closeScore();
 

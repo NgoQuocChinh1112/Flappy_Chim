@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1742219714 source:c:\main_nqc\flappy_bird\main.cpp
+1742264809 source:c:\main_nqc\flappy_bird\main.cpp
 	"game.h"
 
 1742213214 c:\main_nqc\flappy_bird\graphic.h
@@ -34,19 +34,19 @@
 	<cstdlib>
 	<ctime>
 
-1742133268 source:c:\main_nqc\flappy_bird\phong_chu.cpp
+1742234565 source:c:\main_nqc\flappy_bird\phong_chu.cpp
 	"phong_chu.h"
 	<iostream>
 	<string>
 
-1742135288 c:\main_nqc\flappy_bird\phong_chu.h
+1742266660 c:\main_nqc\flappy_bird\phong_chu.h
 	<SDL.h>
 	<SDL_ttf.h>
 
-1742219714 source:c:\main_nqc\flappy_bird\game.cpp
+1742273645 source:c:\main_nqc\flappy_bird\game.cpp
 	"game.h"
 
-1742219714 c:\main_nqc\flappy_bird\game.h
+1742264101 c:\main_nqc\flappy_bird\game.h
 	<iostream>
 	<vector>
 	"graphic.h"

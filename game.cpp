@@ -6,6 +6,11 @@ SDL_Texture* background;
 SDL_Texture* ground;
 SDL_Texture* birdTexture;
 SDL_Texture* gameover;
+SDL_Texture* ChuLogo;
+SDL_Texture* RePlay1;
+SDL_Texture* RePlay2;
+SDL_Texture* Exit1;
+SDL_Texture* Exit2;
 
 Bird bird;
 vector<Pipe> pipes;
@@ -15,6 +20,47 @@ int bgX = 0, gr_X = 0;
 float Count = 0;
 bool running = true, start = false;
 
+bool KiemTraToaDoChuot(int mouseX, int mouseY, SDL_Rect button) {
+    return (mouseX >= button.x && mouseX <= button.x + button.w &&
+            mouseY >= button.y && mouseY <= button.y + button.h);
+}
+void RePlayOrExit(bool &TraVe){
+    SDL_Rect RePlayRect = {50, 350, 100, 50};
+    SDL_Rect ExitRect = {250, 350, 100, 50};
+
+    int h = 0, k = 0;
+
+    bool Run = true;
+    SDL_Event c;
+
+    while(Run){
+        int mouseX, mouseY;
+        SDL_GetMouseState(&mouseX, &mouseY);
+        if(KiemTraToaDoChuot(mouseX, mouseY, RePlayRect)) SDL_RenderCopy(renderer, RePlay2, NULL, &RePlayRect);
+        else SDL_RenderCopy(renderer, RePlay1, NULL, &RePlayRect);
+
+        if(KiemTraToaDoChuot(mouseX, mouseY, ExitRect)) SDL_RenderCopy(renderer, Exit2, NULL, &ExitRect);
+        else SDL_RenderCopy(renderer, Exit1, NULL, &ExitRect);
+
+        if(SDL_PollEvent(&c)){
+            if (c.type == SDL_MOUSEBUTTONDOWN) {
+                    int clickX = c.button.x;
+                    int clickY = c.button.y;
+
+                    if (KiemTraToaDoChuot(clickX, clickY, RePlayRect)) {
+                        TraVe = true;
+                        break;
+                    }
+                    else if(KiemTraToaDoChuot(clickX, clickY, ExitRect)) {
+                        TraVe = false;
+                        break;
+                    }
+            }
+        }
+        SDL_RenderPresent(renderer);
+    }
+}
+
 void initGame() {
     window = initSDL(SCREEN_WIDTH, SCREEN_HEIGHT, WINDOW_TITLE);
     renderer = createRenderer(window);
@@ -22,9 +68,22 @@ void initGame() {
     ground = loadTexture("baseLong.png", renderer);
     birdTexture = loadTexture("bird.png", renderer);
     gameover = loadTexture("gameover.png", renderer);
+    ChuLogo = loadTexture("LogoChuFlappyBird.png", renderer);
+    RePlay1 = loadTexture("RePlay1.png", renderer);
+    RePlay2 = loadTexture("RePlay2.png", renderer);
+    Exit1 = loadTexture("Exit1.png", renderer);
+    Exit2 = loadTexture("Exit2.png", renderer);
 
     initBird(bird);
     initScore(renderer);
+}
+void resetGame(){
+    initBird(bird);
+    pipes.clear();
+    Count = 0;
+    bgX = 0;
+    gr_X = 0;
+    start = false;
 }
 void runGame(){
     SDL_Event event ;
@@ -69,15 +128,23 @@ void runGame(){
             }
         }
         SDL_Rect Rect_tmp = {bird.x, bird.y, BIRD_WIDTH, BIRD_HEIGHT};
-        if(KiemTraVaCham(Rect_tmp, pipes) || KTVaChamMatDat(Rect_tmp, grRect1, grRect2) || bird.y > 560){
+        if(KiemTraVaCham(Rect_tmp, pipes) || KTVaChamMatDat(Rect_tmp, grRect1, grRect2) || bird.y < 0){
             SDL_RenderCopy(renderer, gameover, NULL, &overRect);
             SDL_RenderPresent(renderer);
-            break;
+            SDL_Delay(700);
+            bool TraVe;
+            RePlayOrExit(TraVe);
+            if(TraVe){
+                resetGame();
+                resetScore();
+            }
+            else break;
         }
         SDL_RenderPresent(renderer);
     }
 }
-void closeGame() {
+
+void closeGame(){
     closeScore();
     for (Pipe tmp : pipes) {
         SDL_DestroyTexture(tmp.pipe1);

@@ -10,8 +10,12 @@
 
 using namespace std;
 
+bool KiemTraToaDoChuot(int mouseX, int mouseY, SDL_Rect button);
+void RePlayOrExit(bool &TraVe);
 void initGame();
+void resetGame();
 void runGame();
+
 void closeGame();
 
 #endif
