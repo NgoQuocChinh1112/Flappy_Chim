@@ -14,6 +14,7 @@ bool KiemTraToaDoChuot(int mouseX, int mouseY, SDL_Rect button);
 void RePlayOrExit(bool &TraVe);
 void initGame();
 void resetGame();
+void Menugame();
 void runGame();
 
 void closeGame();

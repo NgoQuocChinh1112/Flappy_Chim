@@ -11,6 +11,10 @@ SDL_Texture* RePlay1;
 SDL_Texture* RePlay2;
 SDL_Texture* Exit1;
 SDL_Texture* Exit2;
+SDL_Texture* Play1;
+SDL_Texture* Play2;
+SDL_Texture* Quit1;
+SDL_Texture* Quit2;
 
 Bird bird;
 vector<Pipe> pipes;
@@ -43,7 +47,10 @@ void RePlayOrExit(bool &TraVe){
         else SDL_RenderCopy(renderer, Exit1, NULL, &ExitRect);
 
         if(SDL_PollEvent(&c)){
-            if (c.type == SDL_MOUSEBUTTONDOWN) {
+            if (c.type == SDL_QUIT){
+                closeGame();
+            }
+            else if(c.type == SDL_MOUSEBUTTONDOWN) {
                     int clickX = c.button.x;
                     int clickY = c.button.y;
 
@@ -73,6 +80,10 @@ void initGame() {
     RePlay2 = loadTexture("RePlay2.png", renderer);
     Exit1 = loadTexture("Exit1.png", renderer);
     Exit2 = loadTexture("Exit2.png", renderer);
+    Play1 = loadTexture("Play1.png", renderer);
+    Play2 = loadTexture("Play2.png", renderer);
+    Quit1 = loadTexture("Quit1.png", renderer);
+    Quit2 = loadTexture("Quit2.png", renderer);
 
     initBird(bird);
     initScore(renderer);
@@ -85,6 +96,53 @@ void resetGame(){
     gr_X = 0;
     start = false;
 }
+void Menugame(){
+    bool Trave;
+    SDL_Rect grRect = {0, 500, 400, 100};
+    SDL_Rect ChuLogoRect = {50, 50, 300, 100};
+    SDL_RenderCopy(renderer, background, NULL, NULL);
+    SDL_RenderCopy(renderer, ground, NULL, &grRect);
+    SDL_RenderCopy(renderer, ChuLogo, NULL, &ChuLogoRect);
+    SDL_Rect PlayRect = {150, 250, 100, 50};
+    SDL_Rect QuitRect = {150, 350, 100, 50};
+
+    int h = 0, k = 0;
+
+    bool Run = true;
+    SDL_Event c;
+
+    while(Run){
+        int mouseX, mouseY;
+        SDL_GetMouseState(&mouseX, &mouseY);
+        if(KiemTraToaDoChuot(mouseX, mouseY, PlayRect)) SDL_RenderCopy(renderer, Play2, NULL, &PlayRect);
+        else SDL_RenderCopy(renderer, Play1, NULL, &PlayRect);
+
+        if(KiemTraToaDoChuot(mouseX, mouseY, QuitRect)) SDL_RenderCopy(renderer, Quit2, NULL, &QuitRect);
+        else SDL_RenderCopy(renderer, Quit1, NULL, &QuitRect);
+
+        if(SDL_PollEvent(&c)){
+            if (c.type == SDL_QUIT){
+                closeGame();
+            }
+            else if(c.type == SDL_MOUSEBUTTONDOWN) {
+                    int clickX = c.button.x;
+                    int clickY = c.button.y;
+
+                    if (KiemTraToaDoChuot(clickX, clickY, PlayRect)) {
+                        Trave = true;
+                        break;
+                    }
+                    else if(KiemTraToaDoChuot(clickX, clickY, QuitRect)) {
+                        Trave = false;
+                        break;
+                    }
+            }
+        }
+        SDL_RenderPresent(renderer);
+    }
+    if(Trave) runGame();
+    else closeGame();
+}
 void runGame(){
     SDL_Event event ;
     while(running){
@@ -96,7 +154,7 @@ void runGame(){
         SDL_RenderCopy(renderer, background, NULL, &bgRect2);
 
         while(SDL_PollEvent(&event)){
-            if(event.type == SDL_QUIT) running = false;
+            if(event.type == SDL_QUIT) closeGame();
             if(event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_SPACE){
                 bird.vtoc -= 10.0f;
                 start = true;
@@ -138,7 +196,11 @@ void runGame(){
                 resetGame();
                 resetScore();
             }
-            else break;
+            else {
+                resetGame();
+                resetScore();
+                Menugame();
+            }
         }
         SDL_RenderPresent(renderer);
     }
