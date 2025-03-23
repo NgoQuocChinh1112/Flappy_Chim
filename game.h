@@ -7,6 +7,7 @@
 #include "bird.h"
 #include "pipe.h"
 #include "phong_chu.h"
+#include "sound.h"
 
 using namespace std;
 

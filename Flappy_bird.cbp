@@ -43,6 +43,8 @@
 		<Unit filename="phong_chu.h" />
 		<Unit filename="pipe.cpp" />
 		<Unit filename="pipe.h" />
+		<Unit filename="sound.cpp" />
+		<Unit filename="sound.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

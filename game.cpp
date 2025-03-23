@@ -157,6 +157,7 @@ void runGame(){
             if(event.type == SDL_QUIT) closeGame();
             if(event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_SPACE){
                 bird.vtoc -= 10.0f;
+                FlappyWing();
                 start = true;
             }
         }

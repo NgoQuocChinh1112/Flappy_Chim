@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <vector>
+#include <SDL_mixer.h>
 
 extern const int SCREEN_WIDTH ;
 extern const int SCREEN_HEIGHT ;

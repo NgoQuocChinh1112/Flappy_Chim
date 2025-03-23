@@ -32,6 +32,8 @@ SDL_Window* initSDL(int SCREEN_WIDTH, int SCREEN_HEIGHT, const char* WINDOW_TITL
 
     if (!IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG))
         logErrorAndExit("SDL_image error:", IMG_GetError());
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+        logErrorAndExit("SDL_mixer error:", Mix_GetError());
 
 
     return window;

@@ -2,12 +2,13 @@
 1742618310 source:c:\main_nqc\flappy_bird\main.cpp
 	"game.h"
 
-1742213214 c:\main_nqc\flappy_bird\graphic.h
+1742726047 c:\main_nqc\flappy_bird\graphic.h
 	<SDL.h>
 	<SDL_image.h>
 	<vector>
+	<SDL_mixer.h>
 
-1742213213 source:c:\main_nqc\flappy_bird\graphic.cpp
+1742725932 source:c:\main_nqc\flappy_bird\graphic.cpp
 	"graphic.h"
 	<iostream>
 
@@ -43,14 +44,23 @@
 	<SDL.h>
 	<SDL_ttf.h>
 
-1742619111 source:c:\main_nqc\flappy_bird\game.cpp
+1742725741 source:c:\main_nqc\flappy_bird\game.cpp
 	"game.h"
 
-1742618026 c:\main_nqc\flappy_bird\game.h
+1742725803 c:\main_nqc\flappy_bird\game.h
 	<iostream>
 	<vector>
 	"graphic.h"
 	"bird.h"
 	"pipe.h"
 	"phong_chu.h"
+	"sound.h"
+
+1742725741 c:\main_nqc\flappy_bird\sound.h
+	<iostream>
+	<SDL.h>
+	<SDL_mixer.h>
+
+1742725779 source:c:\main_nqc\flappy_bird\sound.cpp
+	"sound.h"
 
