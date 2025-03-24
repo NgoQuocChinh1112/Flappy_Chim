@@ -6,5 +6,7 @@
 #include <SDL_mixer.h>
 
 void FlappyWing();
+void FlappyPoint();
+void FlappyHit();
 
 #endif // SOUND_H

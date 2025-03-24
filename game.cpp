@@ -18,7 +18,7 @@ SDL_Texture* Quit2;
 
 Bird bird;
 vector<Pipe> pipes;
-SDL_Rect overRect = {75, 100, 250, 125};
+SDL_Rect overRect = {75, 60, 250, 125};
 
 int bgX = 0, gr_X = 0;
 float Count = 0;
@@ -28,9 +28,14 @@ bool KiemTraToaDoChuot(int mouseX, int mouseY, SDL_Rect button) {
     return (mouseX >= button.x && mouseX <= button.x + button.w &&
             mouseY >= button.y && mouseY <= button.y + button.h);
 }
+void renderScore_Best(){
+    SDL_Texture* Score_Best = loadTexture("Score_Best.png", renderer);
+    SDL_Rect Score_BestRect = {60,200, 280, 180};
+    SDL_RenderCopy(renderer, Score_Best, NULL, &Score_BestRect);
+}
 void RePlayOrExit(bool &TraVe){
-    SDL_Rect RePlayRect = {50, 350, 100, 50};
-    SDL_Rect ExitRect = {250, 350, 100, 50};
+    SDL_Rect RePlayRect = {50, 420, 100, 50};
+    SDL_Rect ExitRect = {250, 420, 100, 50};
 
     int h = 0, k = 0;
 
@@ -103,8 +108,8 @@ void Menugame(){
     SDL_RenderCopy(renderer, background, NULL, NULL);
     SDL_RenderCopy(renderer, ground, NULL, &grRect);
     SDL_RenderCopy(renderer, ChuLogo, NULL, &ChuLogoRect);
-    SDL_Rect PlayRect = {150, 250, 100, 50};
-    SDL_Rect QuitRect = {150, 350, 100, 50};
+    SDL_Rect PlayRect = {150, 300, 100, 50};
+    SDL_Rect QuitRect = {150, 400, 100, 50};
 
     int h = 0, k = 0;
 
@@ -179,16 +184,24 @@ void runGame(){
         SDL_RenderCopy(renderer, ground, NULL, &grRect1);
         SDL_RenderCopy(renderer, ground, NULL, &grRect2);
 
-        renderScore(renderer);
+        renderScore(renderer, 50, 30);
         for(auto &tmp : pipes){
             if(bird.x > tmp.pipe_x + BIRD_WIDTH && !tmp.pass){
                 increaseScore();
+                FlappyPoint();
                 tmp.pass = true;
             }
         }
         SDL_Rect Rect_tmp = {bird.x, bird.y, BIRD_WIDTH, BIRD_HEIGHT};
         if(KiemTraVaCham(Rect_tmp, pipes) || KTVaChamMatDat(Rect_tmp, grRect1, grRect2) || bird.y < 0){
+
+                FlappyHit();
             SDL_RenderCopy(renderer, gameover, NULL, &overRect);
+            renderScore_Best();
+            renderScore(renderer, 140, 275);
+
+            score = FindScoreBest();
+            renderScore(renderer, 253, 250);
             SDL_RenderPresent(renderer);
             SDL_Delay(700);
             bool TraVe;
@@ -206,7 +219,6 @@ void runGame(){
         SDL_RenderPresent(renderer);
     }
 }
-
 void closeGame(){
     closeScore();
     for (Pipe tmp : pipes) {

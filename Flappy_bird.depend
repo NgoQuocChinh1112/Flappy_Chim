@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1742618310 source:c:\main_nqc\flappy_bird\main.cpp
+1742843012 source:c:\main_nqc\flappy_bird\main.cpp
 	"game.h"
 
 1742726047 c:\main_nqc\flappy_bird\graphic.h
@@ -35,19 +35,23 @@
 	<cstdlib>
 	<ctime>
 
-1742234565 source:c:\main_nqc\flappy_bird\phong_chu.cpp
+1742842056 source:c:\main_nqc\flappy_bird\phong_chu.cpp
 	"phong_chu.h"
+	"graphic.h"
+	<fstream>
 	<iostream>
 	<string>
 
-1742618026 c:\main_nqc\flappy_bird\phong_chu.h
+1742841844 c:\main_nqc\flappy_bird\phong_chu.h
 	<SDL.h>
 	<SDL_ttf.h>
+	<SDL_image.h>
+	"graphic.h"
 
-1742725741 source:c:\main_nqc\flappy_bird\game.cpp
+1742842373 source:c:\main_nqc\flappy_bird\game.cpp
 	"game.h"
 
-1742725803 c:\main_nqc\flappy_bird\game.h
+1742840595 c:\main_nqc\flappy_bird\game.h
 	<iostream>
 	<vector>
 	"graphic.h"
@@ -56,11 +60,11 @@
 	"phong_chu.h"
 	"sound.h"
 
-1742725741 c:\main_nqc\flappy_bird\sound.h
+1742726836 c:\main_nqc\flappy_bird\sound.h
 	<iostream>
 	<SDL.h>
 	<SDL_mixer.h>
 
-1742725779 source:c:\main_nqc\flappy_bird\sound.cpp
+1742726836 source:c:\main_nqc\flappy_bird\sound.cpp
 	"sound.h"
 

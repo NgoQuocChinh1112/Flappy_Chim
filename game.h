@@ -12,6 +12,7 @@
 using namespace std;
 
 bool KiemTraToaDoChuot(int mouseX, int mouseY, SDL_Rect button);
+void renderScore_Best();
 void RePlayOrExit(bool &TraVe);
 void initGame();
 void resetGame();

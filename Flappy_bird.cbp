@@ -38,6 +38,7 @@
 		<Unit filename="game.h" />
 		<Unit filename="graphic.cpp" />
 		<Unit filename="graphic.h" />
+		<Unit filename="highscore.txt" />
 		<Unit filename="main.cpp" />
 		<Unit filename="phong_chu.cpp" />
 		<Unit filename="phong_chu.h" />
