@@ -21,7 +21,7 @@ vector<Pipe> pipes;
 SDL_Rect overRect = {75, 60, 250, 125};
 
 int bgX = 0, gr_X = 0;
-float Count = 0;
+
 bool running = true, start = false;
 
 bool KiemTraToaDoChuot(int mouseX, int mouseY, SDL_Rect button) {
@@ -30,8 +30,8 @@ bool KiemTraToaDoChuot(int mouseX, int mouseY, SDL_Rect button) {
 }
 void renderScore_Best(){
     SDL_Texture* Score_Best = loadTexture("Score_Best.png", renderer);
-    SDL_Rect Score_BestRect = {60,200, 280, 180};
-    SDL_RenderCopy(renderer, Score_Best, NULL, &Score_BestRect);
+        SDL_Rect Score_BestRect = {60, 200, 280, 180};
+        SDL_RenderCopy(renderer, Score_Best, NULL, &Score_BestRect);
 }
 void RePlayOrExit(bool &TraVe){
     SDL_Rect RePlayRect = {50, 420, 100, 50};
@@ -80,7 +80,7 @@ void initGame() {
     ground = loadTexture("baseLong.png", renderer);
     birdTexture = loadTexture("bird.png", renderer);
     gameover = loadTexture("gameover.png", renderer);
-    ChuLogo = loadTexture("LogoChuFlappyBird.png", renderer);
+    ChuLogo = loadTexture("LogoChuFlappyChim.png", renderer);
     RePlay1 = loadTexture("RePlay1.png", renderer);
     RePlay2 = loadTexture("RePlay2.png", renderer);
     Exit1 = loadTexture("Exit1.png", renderer);
@@ -96,7 +96,7 @@ void initGame() {
 void resetGame(){
     initBird(bird);
     pipes.clear();
-    Count = 0;
+    resetCount();
     bgX = 0;
     gr_X = 0;
     start = false;
@@ -104,10 +104,8 @@ void resetGame(){
 void Menugame(){
     bool Trave;
     SDL_Rect grRect = {0, 500, 400, 100};
-    SDL_Rect ChuLogoRect = {50, 50, 300, 100};
-    SDL_RenderCopy(renderer, background, NULL, NULL);
-    SDL_RenderCopy(renderer, ground, NULL, &grRect);
-    SDL_RenderCopy(renderer, ChuLogo, NULL, &ChuLogoRect);
+    SDL_Rect ChuLogoRect = {75, 40, 250, 185};
+
     SDL_Rect PlayRect = {150, 300, 100, 50};
     SDL_Rect QuitRect = {150, 400, 100, 50};
 
@@ -117,6 +115,9 @@ void Menugame(){
     SDL_Event c;
 
     while(Run){
+        SDL_RenderCopy(renderer, background, NULL, NULL);
+        SDL_RenderCopy(renderer, ground, NULL, &grRect);
+        SDL_RenderCopy(renderer, ChuLogo, NULL, &ChuLogoRect);
         int mouseX, mouseY;
         SDL_GetMouseState(&mouseX, &mouseY);
         if(KiemTraToaDoChuot(mouseX, mouseY, PlayRect)) SDL_RenderCopy(renderer, Play2, NULL, &PlayRect);
@@ -167,7 +168,7 @@ void runGame(){
             }
         }
         if(start) updateBird(bird);
-        renderBird(renderer, birdTexture, bird, Count);
+        renderBird(renderer, birdTexture, bird);
 
         if(pipes.empty() || pipes.back().pipe_x < 200){
            CreatePipe(pipes, renderer);

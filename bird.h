@@ -10,6 +10,7 @@ struct Bird{
 };
 void initBird(Bird &bird);
 void updateBird(Bird &bird);
-void renderBird(SDL_Renderer* renderer, SDL_Texture* texture, Bird &bird, float &Count);
+void resetCount();
+void renderBird(SDL_Renderer* renderer, SDL_Texture* texture, Bird &bird);
 
 #endif // BIRD_H

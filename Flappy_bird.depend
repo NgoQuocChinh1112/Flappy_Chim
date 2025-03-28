@@ -12,7 +12,7 @@
 	"graphic.h"
 	<iostream>
 
-1742116950 source:c:\main_nqc\flappy_bird\bird.cpp
+1743178183 source:c:\main_nqc\flappy_bird\bird.cpp
 	"bird.h"
 	"graphic.h"
 
@@ -22,7 +22,7 @@
 
 1741935775 source:c:\main_nqc\flappy_bird\background.cpp
 
-1742099749 c:\main_nqc\flappy_bird\bird.h
+1743174693 c:\main_nqc\flappy_bird\bird.h
 	<SDL.h>
 	<SDL_image.h>
 
@@ -48,7 +48,7 @@
 	<SDL_image.h>
 	"graphic.h"
 
-1742842373 source:c:\main_nqc\flappy_bird\game.cpp
+1743174693 source:c:\main_nqc\flappy_bird\game.cpp
 	"game.h"
 
 1742840595 c:\main_nqc\flappy_bird\game.h
@@ -67,4 +67,6 @@
 
 1742726836 source:c:\main_nqc\flappy_bird\sound.cpp
 	"sound.h"
+
+1743165868 source:c:\main_nqc\flappy_bird\gameover.cpp
 
