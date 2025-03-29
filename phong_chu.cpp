@@ -28,9 +28,9 @@ void increaseScore(){
 void resetScore(){
     score = 0;
 }
-void renderScore(SDL_Renderer* renderer, int x, int y){
+void renderScore(SDL_Renderer* renderer, int x, int y, int Score){
     SDL_Color white = {255, 255, 255};
-    string scoreText = to_string(score);
+    string scoreText = to_string(Score);
 
     SDL_Surface* surface = TTF_RenderText_Solid(font, scoreText.c_str(), white);
     if (!surface) return;
@@ -72,4 +72,9 @@ int FindScoreBest(){
         return Score_new;
     }
     return HighScore_old;
+}
+void renderScore_Best(SDL_Renderer* renderer, int y){
+    SDL_Texture* Score_Best = loadTexture("Score_Best.png", renderer);
+        SDL_Rect Score_BestRect = {60, y, 280, 180};
+        SDL_RenderCopy(renderer, Score_Best, NULL, &Score_BestRect);
 }

@@ -4,6 +4,7 @@ SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_Texture* background;
 SDL_Texture* ground;
+SDL_Texture* Texture_Coin;
 SDL_Texture* birdTexture;
 SDL_Texture* gameover;
 SDL_Texture* ChuLogo;
@@ -19,26 +20,72 @@ SDL_Texture* Quit2;
 Bird bird;
 vector<Pipe> pipes;
 SDL_Rect overRect = {75, 60, 250, 125};
-
+SDL_Rect Texture_CoinRect = {10, 33, 30, 30};
 int bgX = 0, gr_X = 0;
-
+int Count_Copy = 0;
 bool running = true, start = false;
 
 bool KiemTraToaDoChuot(int mouseX, int mouseY, SDL_Rect button) {
     return (mouseX >= button.x && mouseX <= button.x + button.w &&
             mouseY >= button.y && mouseY <= button.y + button.h);
 }
-void renderScore_Best(){
-    SDL_Texture* Score_Best = loadTexture("Score_Best.png", renderer);
-        SDL_Rect Score_BestRect = {60, 200, 280, 180};
-        SDL_RenderCopy(renderer, Score_Best, NULL, &Score_BestRect);
+
+void initGame() {
+    window = initSDL(SCREEN_WIDTH, SCREEN_HEIGHT, WINDOW_TITLE);
+    renderer = createRenderer(window);
+    background = loadTexture("bgDay.png", renderer);
+    ground = loadTexture("baseLong.png", renderer);
+    Texture_Coin = loadTexture("texture_coin.png", renderer);
+    birdTexture = loadTexture("bird.png", renderer);
+    gameover = loadTexture("gameover.png", renderer);
+    ChuLogo = loadTexture("LogoChuFlappyChim.png", renderer);
+    RePlay1 = loadTexture("RePlay1.png", renderer);
+    RePlay2 = loadTexture("RePlay2.png", renderer);
+    Exit1 = loadTexture("Exit1.png", renderer);
+    Exit2 = loadTexture("Exit2.png", renderer);
+    Play1 = loadTexture("Play1.png", renderer);
+    Play2 = loadTexture("Play2.png", renderer);
+    Quit1 = loadTexture("Quit1.png", renderer);
+    Quit2 = loadTexture("Quit2.png", renderer);
+
+    initBird(bird);
+    initScore(renderer);
 }
+
 void RePlayOrExit(bool &TraVe){
+                FlappyHit();
+                Mix_HaltMusic();
+                FlappyDie();
+                SDL_Delay(200);
+    SDL_Rect bgRect_tmp1 = {bgX, 0, 400, 600};
+    SDL_Rect bgRect_tmp2 = {bgX+400, 0, 400, 600};
+    SDL_Rect grRect_tmp1 = {gr_X, 500, 420, 100};
+    SDL_Rect grRect_tmp2 = {gr_X+400, 500, 420, 100};
+    int StartY = 600, TargetY = 200;
+    FlappySwoosh();
+    while(StartY >= TargetY){
+        SDL_RenderCopy(renderer, background, NULL, &bgRect_tmp1);
+        SDL_RenderCopy(renderer, background, NULL, &bgRect_tmp2);
+        renderBird(renderer, birdTexture, bird, Count_Copy);
+        renderPipes(renderer, pipes);
+        SDL_RenderCopy(renderer, ground, NULL, &grRect_tmp1);
+        SDL_RenderCopy(renderer, ground, NULL, &grRect_tmp2);
+        SDL_RenderCopy(renderer, Texture_Coin, NULL, &Texture_CoinRect);
+        renderScore(renderer, 50, 30, score);
+        SDL_RenderCopy(renderer, gameover, NULL, &overRect);
+        SDL_RenderCopy(renderer, gameover, NULL, &overRect);
+        renderScore_Best(renderer, StartY);
+        if(bird.y < 500-BIRD_HEIGHT) bird.y += 15;
+        StartY -= 10;
+        SDL_RenderPresent(renderer);
+    }
+            renderScore(renderer, 140, 275, score);
+            int score_best = FindScoreBest();
+            renderScore(renderer, 253, 250, score_best);
+            SDL_RenderPresent(renderer);
+            SDL_Delay(700);
     SDL_Rect RePlayRect = {50, 420, 100, 50};
     SDL_Rect ExitRect = {250, 420, 100, 50};
-
-    int h = 0, k = 0;
-
     bool Run = true;
     SDL_Event c;
 
@@ -71,27 +118,6 @@ void RePlayOrExit(bool &TraVe){
         }
         SDL_RenderPresent(renderer);
     }
-}
-
-void initGame() {
-    window = initSDL(SCREEN_WIDTH, SCREEN_HEIGHT, WINDOW_TITLE);
-    renderer = createRenderer(window);
-    background = loadTexture("bgDay.png", renderer);
-    ground = loadTexture("baseLong.png", renderer);
-    birdTexture = loadTexture("bird.png", renderer);
-    gameover = loadTexture("gameover.png", renderer);
-    ChuLogo = loadTexture("LogoChuFlappyChim.png", renderer);
-    RePlay1 = loadTexture("RePlay1.png", renderer);
-    RePlay2 = loadTexture("RePlay2.png", renderer);
-    Exit1 = loadTexture("Exit1.png", renderer);
-    Exit2 = loadTexture("Exit2.png", renderer);
-    Play1 = loadTexture("Play1.png", renderer);
-    Play2 = loadTexture("Play2.png", renderer);
-    Quit1 = loadTexture("Quit1.png", renderer);
-    Quit2 = loadTexture("Quit2.png", renderer);
-
-    initBird(bird);
-    initScore(renderer);
 }
 void resetGame(){
     initBird(bird);
@@ -150,11 +176,12 @@ void Menugame(){
     else closeGame();
 }
 void runGame(){
+    SoundGame();
     SDL_Event event ;
     while(running){
+        bgX -=3;
         SDL_Rect bgRect1 = {bgX, 0, 400, 600};
         SDL_Rect bgRect2 = {bgX+400, 0, 400, 600};
-        bgX -=3;
         if(bgX <= -400) bgX = 0;
         SDL_RenderCopy(renderer, background, NULL, &bgRect1);
         SDL_RenderCopy(renderer, background, NULL, &bgRect2);
@@ -168,7 +195,8 @@ void runGame(){
             }
         }
         if(start) updateBird(bird);
-        renderBird(renderer, birdTexture, bird);
+        Count_Copy = updateFames();
+        renderBird(renderer, birdTexture, bird, Count_Copy);
 
         if(pipes.empty() || pipes.back().pipe_x < 200){
            CreatePipe(pipes, renderer);
@@ -178,14 +206,15 @@ void runGame(){
             updatePipes(pipes, Size);
             renderPipes(renderer, pipes);
         }
+        gr_X -=3;
         SDL_Rect grRect1 = {gr_X, 500, 420, 100};
         SDL_Rect grRect2 = {gr_X+400, 500, 420, 100};
-        gr_X -=3;
         if(gr_X <= -400) gr_X = 0;
         SDL_RenderCopy(renderer, ground, NULL, &grRect1);
         SDL_RenderCopy(renderer, ground, NULL, &grRect2);
 
-        renderScore(renderer, 50, 30);
+        SDL_RenderCopy(renderer, Texture_Coin, NULL, &Texture_CoinRect);
+        renderScore(renderer, 50, 30, score);
         for(auto &tmp : pipes){
             if(bird.x > tmp.pipe_x + BIRD_WIDTH && !tmp.pass){
                 increaseScore();
@@ -195,21 +224,12 @@ void runGame(){
         }
         SDL_Rect Rect_tmp = {bird.x, bird.y, BIRD_WIDTH, BIRD_HEIGHT};
         if(KiemTraVaCham(Rect_tmp, pipes) || KTVaChamMatDat(Rect_tmp, grRect1, grRect2) || bird.y < 0){
-
-                FlappyHit();
-            SDL_RenderCopy(renderer, gameover, NULL, &overRect);
-            renderScore_Best();
-            renderScore(renderer, 140, 275);
-
-            score = FindScoreBest();
-            renderScore(renderer, 253, 250);
-            SDL_RenderPresent(renderer);
-            SDL_Delay(700);
             bool TraVe;
             RePlayOrExit(TraVe);
             if(TraVe){
                 resetGame();
                 resetScore();
+                SoundGame();
             }
             else {
                 resetGame();

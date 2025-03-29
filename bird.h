@@ -11,6 +11,7 @@ struct Bird{
 void initBird(Bird &bird);
 void updateBird(Bird &bird);
 void resetCount();
-void renderBird(SDL_Renderer* renderer, SDL_Texture* texture, Bird &bird);
+int updateFames();
+void renderBird(SDL_Renderer* renderer, SDL_Texture* texture, Bird &bird, int Count_Copy);
 
 #endif // BIRD_H

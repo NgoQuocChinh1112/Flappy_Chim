@@ -12,3 +12,18 @@ void FlappyHit(){
     Mix_Chunk* Hit = Mix_LoadWAV("audio_hit.wav");
     Mix_PlayChannel(-1, Hit, 0);
 }
+void FlappySwoosh(){
+    Mix_Chunk* Swoosh = Mix_LoadWAV("audio_swoosh.wav");
+    Mix_VolumeChunk(Swoosh, MIX_MAX_VOLUME);
+    Mix_PlayChannel(-1, Swoosh, 0);
+}
+void FlappyDie(){
+    Mix_Chunk* Die = Mix_LoadWAV("audio_die.wav");
+    Mix_VolumeChunk(Die, MIX_MAX_VOLUME);
+    Mix_PlayChannel(-1, Die, 0);
+}
+void SoundGame(){
+    Mix_Music* music = Mix_LoadMUS("SoundGame.mp3");
+    Mix_PlayMusic(music, -1);
+    Mix_VolumeMusic(20);
+}

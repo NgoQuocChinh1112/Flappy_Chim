@@ -8,5 +8,8 @@
 void FlappyWing();
 void FlappyPoint();
 void FlappyHit();
+void FlappySwoosh();
+void FlappyDie();
+void SoundGame();
 
 #endif // SOUND_H
