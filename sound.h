@@ -10,6 +10,8 @@ void FlappyPoint();
 void FlappyHit();
 void FlappySwoosh();
 void FlappyDie();
+void SoundClick();
 void SoundGame();
+void SoundMenu();
 
 #endif // SOUND_H

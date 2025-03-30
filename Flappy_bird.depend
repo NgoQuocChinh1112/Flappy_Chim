@@ -48,7 +48,7 @@
 	<SDL_image.h>
 	"graphic.h"
 
-1743258153 source:c:\main_nqc\flappy_bird\game.cpp
+1743333474 source:c:\main_nqc\flappy_bird\game.cpp
 	"game.h"
 
 1743220030 c:\main_nqc\flappy_bird\game.h
@@ -60,13 +60,78 @@
 	"phong_chu.h"
 	"sound.h"
 
-1743258153 c:\main_nqc\flappy_bird\sound.h
+1743332385 c:\main_nqc\flappy_bird\sound.h
 	<iostream>
 	<SDL.h>
 	<SDL_mixer.h>
 
-1743258153 source:c:\main_nqc\flappy_bird\sound.cpp
+1743333781 source:c:\main_nqc\flappy_bird\sound.cpp
 	"sound.h"
 
 1743253709 source:c:\main_nqc\flappy_bird\gameover.cpp
+
+1743255027 source:c:\main_nqc\flappy_chim\bird.cpp
+	"bird.h"
+	"graphic.h"
+
+1743255027 c:\main_nqc\flappy_chim\bird.h
+	<SDL.h>
+	<SDL_image.h>
+
+1742726047 c:\main_nqc\flappy_chim\graphic.h
+	<SDL.h>
+	<SDL_image.h>
+	<vector>
+	<SDL_mixer.h>
+
+1743333474 source:c:\main_nqc\flappy_chim\game.cpp
+	"game.h"
+
+1743220030 c:\main_nqc\flappy_chim\game.h
+	<iostream>
+	<vector>
+	"graphic.h"
+	"bird.h"
+	"pipe.h"
+	"phong_chu.h"
+	"sound.h"
+
+1742213733 c:\main_nqc\flappy_chim\pipe.h
+	<SDL.h>
+	<SDL_image.h>
+	<vector>
+	<cstdlib>
+	<ctime>
+
+1743253881 c:\main_nqc\flappy_chim\phong_chu.h
+	<SDL.h>
+	<SDL_ttf.h>
+	<SDL_image.h>
+	"graphic.h"
+
+1743332385 c:\main_nqc\flappy_chim\sound.h
+	<iostream>
+	<SDL.h>
+	<SDL_mixer.h>
+
+1743349416 source:c:\main_nqc\flappy_chim\graphic.cpp
+	"graphic.h"
+	<iostream>
+
+1742843012 source:c:\main_nqc\flappy_chim\main.cpp
+	"game.h"
+
+1743253860 source:c:\main_nqc\flappy_chim\phong_chu.cpp
+	"phong_chu.h"
+	"graphic.h"
+	<fstream>
+	<iostream>
+	<string>
+
+1742213733 source:c:\main_nqc\flappy_chim\pipe.cpp
+	"pipe.h"
+	"graphic.h"
+
+1743349428 source:c:\main_nqc\flappy_chim\sound.cpp
+	"sound.h"
 

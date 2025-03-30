@@ -3,7 +3,7 @@
 
 const int SCREEN_WIDTH = 400;
 const int SCREEN_HEIGHT = 600;
-const char* WINDOW_TITLE = "Flappy bird";
+const char* WINDOW_TITLE = "Flappy Chim";
 
 const int BIRD_WIDTH = 40;
 const int BIRD_HEIGHT = 35;

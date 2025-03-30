@@ -22,8 +22,18 @@ void FlappyDie(){
     Mix_VolumeChunk(Die, MIX_MAX_VOLUME);
     Mix_PlayChannel(-1, Die, 0);
 }
+void SoundClick(){
+    Mix_Chunk* Click = Mix_LoadWAV("Soundclick.wav");
+    Mix_VolumeChunk(Click, MIX_MAX_VOLUME);
+    Mix_PlayChannel(-1, Click, 0);
+}
 void SoundGame(){
     Mix_Music* music = Mix_LoadMUS("SoundGame.mp3");
     Mix_PlayMusic(music, -1);
     Mix_VolumeMusic(20);
+}
+void SoundMenu(){
+    Mix_Music* menu = Mix_LoadMUS("Soundmenu.mp3");
+    Mix_PlayMusic(menu, -1);
+    Mix_VolumeMusic(128);
 }

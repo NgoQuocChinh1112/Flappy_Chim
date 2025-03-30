@@ -16,6 +16,8 @@ SDL_Texture* Play1;
 SDL_Texture* Play2;
 SDL_Texture* Quit1;
 SDL_Texture* Quit2;
+SDL_Texture* Comment1;
+SDL_Texture* Comment2;
 
 Bird bird;
 vector<Pipe> pipes;
@@ -47,6 +49,8 @@ void initGame() {
     Play2 = loadTexture("Play2.png", renderer);
     Quit1 = loadTexture("Quit1.png", renderer);
     Quit2 = loadTexture("Quit2.png", renderer);
+    Comment1 = loadTexture("comment1.png", renderer);
+    Comment2 = loadTexture("comment2.png", renderer);
 
     initBird(bird);
     initScore(renderer);
@@ -56,7 +60,7 @@ void RePlayOrExit(bool &TraVe){
                 FlappyHit();
                 Mix_HaltMusic();
                 FlappyDie();
-                SDL_Delay(200);
+                SDL_Delay(300);
     SDL_Rect bgRect_tmp1 = {bgX, 0, 400, 600};
     SDL_Rect bgRect_tmp2 = {bgX+400, 0, 400, 600};
     SDL_Rect grRect_tmp1 = {gr_X, 500, 420, 100};
@@ -66,8 +70,8 @@ void RePlayOrExit(bool &TraVe){
     while(StartY >= TargetY){
         SDL_RenderCopy(renderer, background, NULL, &bgRect_tmp1);
         SDL_RenderCopy(renderer, background, NULL, &bgRect_tmp2);
-        renderBird(renderer, birdTexture, bird, Count_Copy);
         renderPipes(renderer, pipes);
+        renderBird(renderer, birdTexture, bird, Count_Copy);
         SDL_RenderCopy(renderer, ground, NULL, &grRect_tmp1);
         SDL_RenderCopy(renderer, ground, NULL, &grRect_tmp2);
         SDL_RenderCopy(renderer, Texture_Coin, NULL, &Texture_CoinRect);
@@ -79,9 +83,9 @@ void RePlayOrExit(bool &TraVe){
         StartY -= 10;
         SDL_RenderPresent(renderer);
     }
-            renderScore(renderer, 140, 275, score);
+            renderScore(renderer, 138, 275, score);
             int score_best = FindScoreBest();
-            renderScore(renderer, 253, 250, score_best);
+            renderScore(renderer, 250, 250, score_best);
             SDL_RenderPresent(renderer);
             SDL_Delay(700);
     SDL_Rect RePlayRect = {50, 420, 100, 50};
@@ -106,11 +110,11 @@ void RePlayOrExit(bool &TraVe){
                     int clickX = c.button.x;
                     int clickY = c.button.y;
 
-                    if (KiemTraToaDoChuot(clickX, clickY, RePlayRect)) {
+                    if (KiemTraToaDoChuot(clickX, clickY, RePlayRect)) { SoundClick();
                         TraVe = true;
                         break;
                     }
-                    else if(KiemTraToaDoChuot(clickX, clickY, ExitRect)) {
+                    else if(KiemTraToaDoChuot(clickX, clickY, ExitRect)) { FlappySwoosh();
                         TraVe = false;
                         break;
                     }
@@ -128,14 +132,14 @@ void resetGame(){
     start = false;
 }
 void Menugame(){
+    SoundMenu();
     bool Trave;
     SDL_Rect grRect = {0, 500, 400, 100};
     SDL_Rect ChuLogoRect = {75, 40, 250, 185};
 
-    SDL_Rect PlayRect = {150, 300, 100, 50};
-    SDL_Rect QuitRect = {150, 400, 100, 50};
-
-    int h = 0, k = 0;
+    SDL_Rect PlayRect = {150, 280, 100, 50};
+    SDL_Rect QuitRect = {150, 360, 100, 50};
+    SDL_Rect CommentRect = {20, 535, 30, 45};
 
     bool Run = true;
     SDL_Event c;
@@ -152,6 +156,9 @@ void Menugame(){
         if(KiemTraToaDoChuot(mouseX, mouseY, QuitRect)) SDL_RenderCopy(renderer, Quit2, NULL, &QuitRect);
         else SDL_RenderCopy(renderer, Quit1, NULL, &QuitRect);
 
+        if(KiemTraToaDoChuot(mouseX, mouseY, CommentRect)) SDL_RenderCopy(renderer, Comment2, NULL, &CommentRect);
+        else SDL_RenderCopy(renderer, Comment1, NULL, &CommentRect);
+
         if(SDL_PollEvent(&c)){
             if (c.type == SDL_QUIT){
                 closeGame();
@@ -161,10 +168,14 @@ void Menugame(){
                     int clickY = c.button.y;
 
                     if (KiemTraToaDoChuot(clickX, clickY, PlayRect)) {
+                        SoundClick();
                         Trave = true;
+                        Mix_HaltMusic();
                         break;
                     }
                     else if(KiemTraToaDoChuot(clickX, clickY, QuitRect)) {
+                        FlappySwoosh();
+                        SDL_Delay(400);
                         Trave = false;
                         break;
                     }
