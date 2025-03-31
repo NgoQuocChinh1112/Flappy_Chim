@@ -18,6 +18,7 @@ SDL_Texture* Quit1;
 SDL_Texture* Quit2;
 SDL_Texture* Comment1;
 SDL_Texture* Comment2;
+SDL_Texture* Prompt;
 
 Bird bird;
 vector<Pipe> pipes;
@@ -51,7 +52,7 @@ void initGame() {
     Quit2 = loadTexture("Quit2.png", renderer);
     Comment1 = loadTexture("comment1.png", renderer);
     Comment2 = loadTexture("comment2.png", renderer);
-
+    Prompt = loadTexture("prompt.png", renderer);
     initBird(bird);
     initScore(renderer);
 }
@@ -140,7 +141,9 @@ void Menugame(){
     SDL_Rect PlayRect = {150, 280, 100, 50};
     SDL_Rect QuitRect = {150, 360, 100, 50};
     SDL_Rect CommentRect = {20, 535, 30, 45};
-
+    SDL_Rect promptRect = {50, 280, 300, 80};
+    SDL_Rect promptFrame1 = {0, 0, 169, 35};
+    SDL_Rect promptFrame2 = {0, 35, 169, 35};
     bool Run = true;
     SDL_Event c;
 
@@ -150,6 +153,7 @@ void Menugame(){
         SDL_RenderCopy(renderer, ChuLogo, NULL, &ChuLogoRect);
         int mouseX, mouseY;
         SDL_GetMouseState(&mouseX, &mouseY);
+
         if(KiemTraToaDoChuot(mouseX, mouseY, PlayRect)) SDL_RenderCopy(renderer, Play2, NULL, &PlayRect);
         else SDL_RenderCopy(renderer, Play1, NULL, &PlayRect);
 
@@ -178,6 +182,18 @@ void Menugame(){
                         SDL_Delay(400);
                         Trave = false;
                         break;
+                    }
+                    else if(KiemTraToaDoChuot(clickX, clickY, CommentRect)){
+                        SoundClick();
+                        for(int i = 1;i <= 6;++i){
+                        SDL_RenderCopy(renderer, background, NULL, NULL);
+                        SDL_RenderCopy(renderer, ground, NULL, &grRect);
+                        SDL_RenderCopy(renderer, ChuLogo, NULL, &ChuLogoRect);
+                        if(i%2==0) SDL_RenderCopy(renderer, Prompt, &promptFrame1, &promptRect);
+                        else SDL_RenderCopy(renderer, Prompt, &promptFrame2, &promptRect);
+                        SDL_RenderPresent(renderer);
+                        SDL_Delay(300);
+                        }
                     }
             }
         }
