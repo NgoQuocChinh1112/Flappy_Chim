@@ -18,6 +18,7 @@ struct Pipe{
         pass = false;
     }
 };
+void resetpipeSpeed();
 void CreatePipe(vector<Pipe> &pipes, SDL_Renderer* renderer);
 void updatePipes(vector<Pipe> &pipes, int Size);
 void renderPipes(SDL_Renderer* renderer, vector<Pipe> &pipes);

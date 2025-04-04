@@ -1,10 +1,15 @@
 #include "bird.h"
 #include "graphic.h"
+#include "phong_chu.h"
 
 using namespace std;
 
 float Count = 0;
+double gravity = 0.39;
 
+void resetgravity(){
+    gravity = 0.39;
+}
 SDL_Rect birdFrames[4] = {
     {0, 0, BIRD_WIDTH, BIRD_HEIGHT},
     {0, BIRD_HEIGHT, BIRD_WIDTH, BIRD_HEIGHT},
@@ -18,7 +23,11 @@ void initBird(Bird &bird){
     bird.vtoc = 0;
 }
 void updateBird(Bird &bird){
-    bird.vtoc += 0.39f;
+    if(score == 8) gravity = 0.41;
+    if(score == 16) gravity = 0.43;
+    if(score == 24) gravity = 0.45;
+    if(score == 32) gravity = 0.47;
+    bird.vtoc += gravity;
     bird.y +=bird.vtoc;
 }
 void resetCount(){

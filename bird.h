@@ -8,6 +8,7 @@ struct Bird{
     int x, y;
     float vtoc;
 };
+void resetgravity();
 void initBird(Bird &bird);
 void updateBird(Bird &bird);
 void resetCount();

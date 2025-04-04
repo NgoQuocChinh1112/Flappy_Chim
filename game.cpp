@@ -127,6 +127,8 @@ void RePlayOrExit(bool &TraVe){
 void resetGame(){
     initBird(bird);
     pipes.clear();
+    resetpipeSpeed();
+    resetgravity();
     resetCount();
     bgX = 0;
     gr_X = 0;

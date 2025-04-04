@@ -1,8 +1,14 @@
 #include "pipe.h"
 #include "graphic.h"
+#include "phong_chu.h"
 
 using namespace std;
 
+double pipeSpeed = 3;
+
+void resetpipeSpeed(){
+    pipeSpeed = 3;
+}
 void CreatePipe(vector<Pipe> &pipes, SDL_Renderer* renderer){
     Pipe newPipe ;
     newPipe.pipe_x = 400;
@@ -13,7 +19,11 @@ void CreatePipe(vector<Pipe> &pipes, SDL_Renderer* renderer){
 }
 void updatePipes(vector<Pipe> &pipes, int Size){
     for(int i = 0; i < Size;++i){
-        pipes[i].pipe_x -=3;
+        if(score == 8 ) pipeSpeed = 3.25;
+        if(score == 16 ) pipeSpeed = 3.5;
+        if(score == 24 ) pipeSpeed = 3.75;
+        if(score == 32 ) pipeSpeed = 4;
+        pipes[i].pipe_x -= pipeSpeed;
 
         if(pipes[i].pipe_x < -50){
             pipes.erase(pipes.begin() + i);
