@@ -129,11 +129,11 @@
 	<iostream>
 	<string>
 
-1743794690 source:c:\main_nqc\flappy_chim\pipe.cpp
+1743794860 source:c:\main_nqc\flappy_chim\pipe.cpp
 	"pipe.h"
 	"graphic.h"
 	"phong_chu.h"
 
-1743349428 source:c:\main_nqc\flappy_chim\sound.cpp
+1743795239 source:c:\main_nqc\flappy_chim\sound.cpp
 	"sound.h"
 

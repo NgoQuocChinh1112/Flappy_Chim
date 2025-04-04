@@ -30,7 +30,7 @@ void SoundClick(){
 void SoundGame(){
     Mix_Music* music = Mix_LoadMUS("SoundGame.mp3");
     Mix_PlayMusic(music, -1);
-    Mix_VolumeMusic(20);
+    Mix_VolumeMusic(30);
 }
 void SoundMenu(){
     Mix_Music* menu = Mix_LoadMUS("Soundmenu.mp3");
