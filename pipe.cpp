@@ -19,10 +19,16 @@ void CreatePipe(vector<Pipe> &pipes, SDL_Renderer* renderer){
 }
 void updatePipes(vector<Pipe> &pipes, int Size){
     for(int i = 0; i < Size;++i){
-        if(score == 8 ) pipeSpeed = 3.25;
-        if(score == 16 ) pipeSpeed = 3.5;
-        if(score == 24 ) pipeSpeed = 3.75;
-        if(score == 32 ) pipeSpeed = 4;
+        if(score == 5 ) pipeSpeed = 3.1;
+        if(score == 10 ) pipeSpeed = 3.2;
+        if(score == 15 ) pipeSpeed = 3.3;
+        if(score == 20 ) pipeSpeed = 3.4;
+        if(score == 25 ) pipeSpeed = 3.5;
+        if(score == 30 ) pipeSpeed = 3.6;
+        if(score == 35 ) pipeSpeed = 3.7;
+        if(score == 40 ) pipeSpeed = 3.8;
+        if(score == 45 ) pipeSpeed = 3.9;
+        if(score == 50 ) pipeSpeed = 4.0;
         pipes[i].pipe_x -= pipeSpeed;
 
         if(pipes[i].pipe_x < -50){

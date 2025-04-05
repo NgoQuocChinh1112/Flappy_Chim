@@ -23,10 +23,16 @@ void initBird(Bird &bird){
     bird.vtoc = 0;
 }
 void updateBird(Bird &bird){
-    if(score == 8) gravity = 0.41;
-    if(score == 16) gravity = 0.43;
-    if(score == 24) gravity = 0.45;
-    if(score == 32) gravity = 0.47;
+    if(score == 5) gravity = 0.4;
+    if(score == 10) gravity = 0.41;
+    if(score == 15) gravity = 0.42;
+    if(score == 20) gravity = 0.43;
+    if(score == 25) gravity = 0.44;
+    if(score == 30) gravity = 0.45;
+    if(score == 35) gravity = 0.46;
+    if(score == 40) gravity = 0.47;
+    if(score == 45) gravity = 0.48;
+    if(score == 50) gravity = 0.49;
     bird.vtoc += gravity;
     bird.y +=bird.vtoc;
 }

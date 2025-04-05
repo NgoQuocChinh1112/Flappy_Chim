@@ -70,12 +70,12 @@
 
 1743253709 source:c:\main_nqc\flappy_bird\gameover.cpp
 
-1743794690 source:c:\main_nqc\flappy_chim\bird.cpp
+1743828140 source:c:\main_nqc\flappy_chim\bird.cpp
 	"bird.h"
 	"graphic.h"
 	"phong_chu.h"
 
-1743794559 c:\main_nqc\flappy_chim\bird.h
+1743796006 c:\main_nqc\flappy_chim\bird.h
 	<SDL.h>
 	<SDL_image.h>
 
@@ -85,7 +85,7 @@
 	<vector>
 	<SDL_mixer.h>
 
-1743794559 source:c:\main_nqc\flappy_chim\game.cpp
+1743796006 source:c:\main_nqc\flappy_chim\game.cpp
 	"game.h"
 
 1743220030 c:\main_nqc\flappy_chim\game.h
@@ -97,7 +97,7 @@
 	"phong_chu.h"
 	"sound.h"
 
-1743793353 c:\main_nqc\flappy_chim\pipe.h
+1743796006 c:\main_nqc\flappy_chim\pipe.h
 	<SDL.h>
 	<SDL_image.h>
 	<vector>
@@ -129,11 +129,11 @@
 	<iostream>
 	<string>
 
-1743794860 source:c:\main_nqc\flappy_chim\pipe.cpp
+1743828140 source:c:\main_nqc\flappy_chim\pipe.cpp
 	"pipe.h"
 	"graphic.h"
 	"phong_chu.h"
 
-1743795239 source:c:\main_nqc\flappy_chim\sound.cpp
+1743796006 source:c:\main_nqc\flappy_chim\sound.cpp
 	"sound.h"
 
